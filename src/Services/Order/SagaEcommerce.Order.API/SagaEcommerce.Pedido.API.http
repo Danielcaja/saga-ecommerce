@@ -1,0 +1,6 @@
+@SagaEcommerce.Pedido.API_HostAddress = http://localhost:5200
+
+GET {{SagaEcommerce.Pedido.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

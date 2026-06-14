@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/Order/">
+    <Project Path="src/Services/Order/SagaEcommerce.Order.API/SagaEcommerce.Order.API.csproj" />
+    <Project Path="src/Services/Order/SagaEcommerce.Order.Application/SagaEcommerce.Order.Application.csproj" />
+    <Project Path="src/Services/Order/SagaEcommerce.Order.Domain/SagaEcommerce.Order.Domain.csproj" />
+    <Project Path="src/Services/Order/SagaEcommerce.Order.Infrastructure/SagaEcommerce.Order.Infrastructure.csproj" />
+  </Folder>
+</Solution>

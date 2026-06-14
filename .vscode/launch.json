@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug: Order API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "infra-up + build: Order.API",
+      "program": "${workspaceFolder}/src/Services/Order/SagaEcommerce.Order.API/bin/Debug/net10.0/SagaEcommerce.Order.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Order/SagaEcommerce.Order.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack: Infra + Order API",
+      "configurations": ["Debug: Order API"],
+      "preLaunchTask": "docker-infra-up",
+      "stopAll": true
+    }
+  ]
+}
