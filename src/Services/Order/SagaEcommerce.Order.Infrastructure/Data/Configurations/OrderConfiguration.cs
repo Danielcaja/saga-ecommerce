@@ -12,7 +12,10 @@ public class OrderConfiguration : IEntityTypeConfiguration<OrderEntity>
 
         builder.HasKey(o => o.Id);
 
-        builder.Property(o => o.ClientId)
+        builder.Property(o => o.ProductId)
+            .IsRequired();
+
+        builder.Property(o => o.Quantity)
             .IsRequired();
 
         builder.Property(o => o.Total)

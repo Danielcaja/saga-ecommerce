@@ -46,8 +46,31 @@
       }
     },
     {
+      "label": "build: Inventory.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/Services/Inventory/SagaEcommerce.Inventory.API/SagaEcommerce.Inventory.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+    {
       "label": "infra-up + build: Order.API",
       "dependsOn": ["docker-infra-up", "build: Order.API"],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "infra-up + build: Inventory.API",
+      "dependsOn": ["docker-infra-up", "build: Inventory.API"],
       "dependsOrder": "sequence",
       "problemMatcher": []
     }

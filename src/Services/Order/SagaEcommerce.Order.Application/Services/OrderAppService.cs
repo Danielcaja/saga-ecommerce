@@ -22,20 +22,21 @@ public class OrderAppService(
         }
 
         // 2. Domain Entity Creation (DDD)
-        var order = new OrderEntity(createOrderDto.ClientId, createOrderDto.Total);
+        var order = new OrderEntity(createOrderDto.ProductId, createOrderDto.Quantity, createOrderDto.Total);
 
         // 3. Save to Database
         await orderRepository.AddAsync(order);
         await orderRepository.SaveChangesAsync();
 
         // 4. Publish Integration Event on RabbitMQ (using routing key "order.created")
-        var @event = new OrderCreatedEvent(order.Id, order.ClientId, order.Total, order.CreatedAt);
+        var @event = new OrderCreatedEvent(order.Id, order.ProductId, order.Quantity, order.Total, order.CreatedAt);
         await eventPublisher.PublishAsync(@event, "order.created");
 
         // 5. Return mapped DTO
         return new OrderDto(
             order.Id,
-            order.ClientId,
+            order.ProductId,
+            order.Quantity,
             order.Total,
             order.Status.ToString(),
             order.CreatedAt
@@ -51,7 +52,8 @@ public class OrderAppService(
         {
             result = new OrderDto(
                 order.Id,
-                order.ClientId,
+                order.ProductId,
+                order.Quantity,
                 order.Total,
                 order.Status.ToString(),
                 order.CreatedAt
@@ -59,5 +61,18 @@ public class OrderAppService(
         }
 
         return result;
+    }
+
+    public async Task<IEnumerable<OrderDto>> GetAllAsync()
+    {
+        var orders = await orderRepository.GetAllAsync();
+        return orders.Select(order => new OrderDto(
+            order.Id,
+            order.ProductId,
+            order.Quantity,
+            order.Total,
+            order.Status.ToString(),
+            order.CreatedAt
+        ));
     }
 }

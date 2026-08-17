@@ -7,4 +7,10 @@
     <Project Path="src/Services/Order/SagaEcommerce.Order.Domain/SagaEcommerce.Order.Domain.csproj" />
     <Project Path="src/Services/Order/SagaEcommerce.Order.Infrastructure/SagaEcommerce.Order.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/src/Services/Inventory/">
+    <Project Path="src/Services/Inventory/SagaEcommerce.Inventory.API/SagaEcommerce.Inventory.API.csproj" />
+    <Project Path="src/Services/Inventory/SagaEcommerce.Inventory.Application/SagaEcommerce.Inventory.Application.csproj" />
+    <Project Path="src/Services/Inventory/SagaEcommerce.Inventory.Domain/SagaEcommerce.Inventory.Domain.csproj" />
+    <Project Path="src/Services/Inventory/SagaEcommerce.Inventory.Infrastructure/SagaEcommerce.Inventory.Infrastructure.csproj" />
+  </Folder>
 </Solution>

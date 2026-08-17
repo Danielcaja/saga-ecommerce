@@ -18,7 +18,7 @@ public class OrdersController(IOrderAppService orderAppService, ILogger<OrdersCo
         IActionResult result;
         try
         {
-            logger.LogInformation("Received request to create order. ClientId: {ClientId}, Total: {Total}", createOrderDto.ClientId, createOrderDto.Total);
+            logger.LogInformation("Received request to create order. ProductId: {ProductId}, Quantity: {Quantity}, Total: {Total}", createOrderDto.ProductId, createOrderDto.Quantity, createOrderDto.Total);
             
             var orderDto = await orderAppService.CreateOrderAsync(createOrderDto);
             
@@ -63,5 +63,14 @@ public class OrdersController(IOrderAppService orderAppService, ILogger<OrdersCo
         }
 
         return result;
+    }
+
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<OrderDto>))]
+    public async Task<IActionResult> GetAll()
+    {
+        logger.LogInformation("Received request to get all orders.");
+        var orders = await orderAppService.GetAllAsync();
+        return Ok(orders);
     }
 }

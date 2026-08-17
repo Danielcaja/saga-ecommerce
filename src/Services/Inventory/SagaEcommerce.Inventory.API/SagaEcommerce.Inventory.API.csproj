@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SagaEcommerce.Order.Infrastructure\SagaEcommerce.Order.Infrastructure.csproj" />
+    <ProjectReference Include="..\SagaEcommerce.Inventory.Infrastructure\SagaEcommerce.Inventory.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

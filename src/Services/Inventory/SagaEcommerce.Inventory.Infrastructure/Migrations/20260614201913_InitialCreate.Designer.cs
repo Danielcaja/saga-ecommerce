@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SagaEcommerce.Order.Infrastructure.Data;
+using SagaEcommerce.Inventory.Infrastructure.Data;
 
 #nullable disable
 
-namespace SagaEcommerce.Order.Infrastructure.Migrations
+namespace SagaEcommerce.Inventory.Infrastructure.Migrations
 {
-    [DbContext(typeof(OrderDbContext))]
-    [Migration("20260614183615_InitialCreate")]
+    [DbContext(typeof(InventoryDbContext))]
+    [Migration("20260614201913_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,29 +25,21 @@ namespace SagaEcommerce.Order.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("SagaEcommerce.Order.Domain.Entities.Order", b =>
+            modelBuilder.Entity("SagaEcommerce.Inventory.Domain.Entities.InventoryItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ClientId")
+                    b.Property<int>("AvailableQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("numeric(18,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("InventoryItems", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -43,7 +43,7 @@ services:
     image: postgres:15-alpine
     container_name: saga-inventory-db
     ports:
-      - "5434:5432"
+      - "5435:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

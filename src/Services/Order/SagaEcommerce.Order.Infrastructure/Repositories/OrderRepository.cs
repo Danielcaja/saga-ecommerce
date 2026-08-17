@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using SagaEcommerce.Order.Domain.Repositories;
 using SagaEcommerce.Order.Infrastructure.Data;
 using OrderEntity = SagaEcommerce.Order.Domain.Entities.Order;
@@ -9,6 +10,11 @@ public class OrderRepository(OrderDbContext context) : IOrderRepository
     public async Task<OrderEntity?> GetByIdAsync(Guid id)
     {
         return await context.Orders.FindAsync(id);
+    }
+
+    public async Task<IEnumerable<OrderEntity>> GetAllAsync()
+    {
+        return await context.Orders.AsNoTracking().ToListAsync();
     }
 
     public async Task AddAsync(OrderEntity order)

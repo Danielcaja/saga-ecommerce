@@ -20,12 +20,32 @@
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
       }
+    },
+    {
+      "name": "Debug: Inventory API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "infra-up + build: Inventory.API",
+      "program": "${workspaceFolder}/src/Services/Inventory/SagaEcommerce.Inventory.API/bin/Debug/net10.0/SagaEcommerce.Inventory.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Inventory/SagaEcommerce.Inventory.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
     }
   ],
   "compounds": [
     {
-      "name": "Full Stack: Infra + Order API",
-      "configurations": ["Debug: Order API"],
+      "name": "Full Stack: Infra + All APIs",
+      "configurations": ["Debug: Order API", "Debug: Inventory API"],
       "preLaunchTask": "docker-infra-up",
       "stopAll": true
     }
